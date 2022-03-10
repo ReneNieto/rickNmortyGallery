@@ -1,11 +1,14 @@
 import ky from "https://cdn.skypack.dev/ky?dts";
 let id = 1;
-/* const apiURL = `https://rickandmortyapi.com/api/character?page=${id}`; */
-const apiURL = "https://rickandmortyapi.com/api/character?page=3";
+let apiURL = `https://rickandmortyapi.com/api/character?page=${id}`;
 const listResult = document.querySelector(".search-result");
 
 function newURL(oldid) {
 	let newId = oldid + 1;
+	return newId;
+}
+function oldURL(oldid) {
+	let newId = oldid - 1;
 	return newId;
 }
 
@@ -46,8 +49,6 @@ function createImage(character) {
 	imageEl.classList.add("galery--img");
 	imageEl.src = character.image;
 	itemContainer.appendChild(imageEl);
-	/* 	itemContainer.setAttribute("id", `${Date.now}`); */
-	itemContainer.setAttribute("id", "gridContianer");
 
 	return itemContainer;
 }
@@ -139,8 +140,47 @@ searchBar.addEventListener("input", (e) => {
 });
 
 const nextBtn = document.querySelector("#nextBtn");
+const backtBtn = document.querySelector("#nextBtn");
 
 nextBtn.addEventListener("click", () => {
 	id = newURL(id);
 	console.log(id);
+	apiURL = `https://rickandmortyapi.com/api/character?page=${id + 1}`;
+	newPage(apiURL);
 });
+backBtn.addEventListener("click", () => {
+	id = oldURL(id);
+	apiURL = `https://rickandmortyapi.com/api/character?page=${id - 1}`;
+	newPage(apiURL);
+});
+function removeDom() {
+	while (mainGaleryContainer.firstChild) {
+		mainGaleryContainer.removeChild(mainGaleryContainer.firstChild);
+	}
+}
+function newPage() {
+	(async () => {
+		removeDom();
+		const data = await ky.get(apiURL).json();
+		data.results.forEach(function (element) {
+			const itemContainer = createImage(element);
+			const infoContainer = createInfo(element);
+
+			mainGaleryContainer.appendChild(itemContainer);
+			itemContainer.appendChild(infoContainer);
+
+			itemContainer.addEventListener("mouseenter", () => {
+				infoContainer.classList.add("displayActive");
+				itemContainer.classList.add("z-index--top");
+				document.getElementById("overlay").style.display = "block";
+			});
+
+			itemContainer.addEventListener("mouseleave", () => {
+				infoContainer.classList.remove("displayActive");
+				itemContainer.classList.remove("z-index--top");
+
+				document.getElementById("overlay").style.display = "none";
+			});
+		});
+	})();
+}

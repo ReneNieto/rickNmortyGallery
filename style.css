@@ -45,6 +45,7 @@ header {
 	width: 20%;
 	display: flex;
 }
+
 .galery--img {
 	width: 100%;
 }
@@ -52,6 +53,10 @@ header {
 	display: none;
 	background-color: white;
 	z-index: 1;
+}
+
+.galery--item-container:nth-child(5n) {
+	flex-direction: row-reverse;
 }
 .info-name {
 	width: 300px;
