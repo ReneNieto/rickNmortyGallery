@@ -1,0 +1,106 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Roboto";
+}
+
+header {
+	display: flex;
+	height: 100px;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #1b244b;
+}
+.header-logo {
+	width: 250px;
+	height: 100px;
+}
+.header--nav {
+	width: 400px;
+	display: flex;
+	justify-content: space-evenly;
+	color: #98ece0;
+	font-size: 18px;
+	cursor: pointer;
+}
+#headerSearchbar {
+	border-radius: 20px;
+	border: none;
+	background-color: #59bce7;
+	color: white;
+	font-size: 32px;
+	width: 600px;
+	height: 80px;
+	z-index: 4;
+}
+
+.main--galery-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+.galery--item-container {
+	height: 300px;
+	width: 20%;
+	display: flex;
+}
+.galery--img {
+	width: 100%;
+}
+.info-container {
+	display: none;
+	background-color: white;
+	z-index: 1;
+}
+.info-name {
+	width: 300px;
+	color: white;
+	background-color: black;
+	text-align: center;
+}
+
+.displayActive {
+	display: block;
+}
+
+ul {
+	background-color: white;
+	width: 600px;
+	position: absolute;
+	left: 23.9%;
+	top: 11%;
+	z-index: 4;
+}
+li {
+	list-style: none;
+}
+.search-item {
+	display: flex;
+}
+
+.search-name {
+	padding-inline: 20px;
+}
+
+.seach-img {
+	width: 100px;
+	height: 100px;
+}
+#overlay {
+	position: fixed; /* Sit on top of the page content */
+	display: none; /* Hidden by default */
+	width: 100%; /* Full width (cover the whole page) */
+	height: 100%; /* Full height (cover the whole page) */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+	z-index: 3; /* Specify a stack order in case you're using a different order for other elements */
+	cursor: pointer; /* Add a pointer on hover */
+}
+
+.z-index--top {
+	z-index: 4;
+}
